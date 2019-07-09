@@ -1,0 +1,62 @@
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Etat de Livraison </div>
+                <div class="panel-body">
+                  <p></p>
+<p></p>
+<table class="table table-sm" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                   
+                    <th scope="col">Produit</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Vehicule</th>
+                    <th scope="col">Fournisseurs</th>
+                    <th scope="col">Etat</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of items_etat;let i = index;">
+                  <tr>
+                      <th scope="row">{{i+1}}</th>
+                      
+                    <td>{{f.designation}}</td>
+                    <td>{{f.quantite}}</td>
+                    <td>{{f.vehicule}}</td>
+                    <td>{{f.fournisseur}}</td>
+                    <td>{{f.voyant}}</td>
+                   
+                  
+                  </tr>
+
+
+                  
+                </tbody>
+                <tfoot>
+
+                    
+                </tfoot>
+                
+              </table>
+           
+
+
+        
+          
+
+
+ 
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+

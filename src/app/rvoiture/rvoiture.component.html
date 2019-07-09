@@ -1,0 +1,138 @@
+
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Rapport</div>
+                <div class="panel-body">
+                    
+                        <form #f="ngForm" (ngSubmit)="chercher(f.value)">
+                           
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="power">Vehicules</label>
+                                        <select class="form-control" id="power" required name="id_veh" ngModel [(ngModel)]="vehicules" (ngModelChange)="onChange($event)">
+                                          <option *ngFor="let po of items_vehi" [value]="po._id" >{{po.marque}}--{{po.plaque}}</option>
+                                        </select>
+                                      </div>
+
+                                </div>
+                              </div>
+
+
+                             
+                                
+
+                                
+                                  
+                                    
+
+
+
+                                     
+
+                                      <div class="form-group">
+                                          <label for="formGroupExampleInput2">Du :</label>
+                                          <input type="date" name="date_debut" ngModel class="form-control" id="formGroupExampleInput2" placeholder="1" [(ngModel)]="datedeb">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput2">Au :</label>
+                                            <input type="date"  name="date_fin" ngModel class="form-control" id="formGroupExampleInput2" placeholder="1"  [(ngModel)]="datefins">
+                                          </div>
+                                      
+                                      <button  type="submit" class="btn btn-primary">Rechercher</button>
+
+                                      
+                                    
+                                     
+                              </form>
+                            
+            
+
+                             
+                
+
+
+                                
+</div>
+
+
+
+
+
+
+
+ 
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="container" id="content" #content id="event">
+    <div class="panel panel-default">
+        <div class="panel-heading">Vehicules : {{vehiculesplaque}}</div>
+        <div class="panel-body">
+            <p>Période :   {{datedeb | date:'dd-MM-yyyy'}} - {{ datefins | date:'dd-MM-yyyy' }}</p>
+        </div>
+        <div class="table-responsive">
+<table class="table table-hover table-responsive-md table-fixed" width="100%" border="1">
+                <thead >
+                 
+                  <tr>
+                    
+                    <th scope="col" class="text-center">Produits</th>
+                    <th scope="col" class="text-center">Prix</th>
+                    <th scope="col" class="text-center">Quantite</th>
+                    <th scope="col" class="text-center">Montant</th>
+                    <th scope="col" class="text-center" *ngIf="droit | async">Fournisseur</th>
+                  
+                  </tr>
+                </thead>
+
+                <tbody *ngFor="let f of vehi">
+                  <tr>
+                   
+                    <td class="text-center">{{f.produit}}</td>
+                    <td class="text-center">{{f.prix}} {{"F"}}</td>
+                    <td class="text-center">{{f.quantite}}</td>
+                    <td class="text-center">{{f.quantite*f.prix}} {{"F"}}</td>
+                  
+                    <td class="text-center" *ngIf="droit | async">{{f.fournisseur}}</td>
+
+                   
+                 
+                  </tr>
+                 
+                </tbody>
+               
+              </table>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">Total Depenser :</div>
+                  <div class="panel-body">
+                     <table class="table table-striped" width="100%" border="1"><tr><td colspan="4">{{somme}} {{"F"}}</td></tr></table>
+                  </div>
+                  </div>
+            </div>
+            </div>
+          </div>
+
+          <p></p>
+          
+
+<button (click)="imprime_zon('STAROIL','event');">Imprimer</button>
+

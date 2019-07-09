@@ -1,0 +1,10 @@
+{
+  "/fournisseur": {
+    "target": "http://localhost:8888",
+    "secure": false,
+    "pathRewrite": {
+      "^/fournisseur": ""
+    },
+    "changeOrigin": true
+  }
+}

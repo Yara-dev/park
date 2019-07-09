@@ -1,0 +1,110 @@
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<nav class="navbar navbar-inverse" *ngIf="isLoggedIn | async">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Gestion Park Star oil</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a routerLink="/accueil" routerLinkActive="active">Accueil</a></li>
+              <li><a routerLink="/fournisseur" routerLinkActive="active" *ngIf="droit | async">Fournisseur</a></li>
+              <li><a routerLink="/vehicule" routerLinkActive="active" *ngIf="droit | async">Vehicules</a></li>
+              <li><a routerLink="/produit" routerLinkActive="active" *ngIf="droit | async">Produits</a></li>
+              <li><a routerLink="/affecter" routerLinkActive="active">Demande</a></li>
+              <li><a routerLink="/commande" routerLinkActive="active" *ngIf="droit | async">Commande</a></li>
+              <li><a routerLink="/situation" routerLinkActive="active">Situation Livraison</a></li>
+              <li><a routerLink="/rapport" routerLinkActive="active">Rapport</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li (click)="onLogout()"><a  routerLink="/accueil" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
+              <li><a routerLink="/accueil" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Profil</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>  -->
+
+
+
+
+
+
+
+
+
+      <p></p>
+
+      <p></p>
+      <div class="container">
+
+
+      <nav class="navbar navbar-inverse" *ngIf="isLoggedIn | async">
+        
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#"><img src="/assets/logo.jpg" style="width:70px;"></a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav" style="color:aliceblue">
+              <li class="nav-link active"><a routerLink="/accueil" routerLinkActive="active">Accueil</a></li>
+             <!-- <li class="nav-link active"><a routerLink="/parametre" routerLinkActive="active" *ngIf="droit | async">Parametre</a></li>-->
+               <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown"  *ngIf="droit | async">Parametre<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a routerLink="/fournisseur" routerLinkActive="active" *ngIf="droit | async">Gestion Fournisseur</a></li>
+                  <li><a routerLink="/vehicule" routerLinkActive="active" *ngIf="droit | async">Gestion Vehicules</a></li>
+                  <li><a routerLink="/produit" routerLinkActive="active" *ngIf="droit | async">Gestion Produits</a></li>
+                  <li><a routerLink="/user" routerLinkActive="active" *ngIf="droit | async">Gestion Utilisateur</a></li>
+                  <li><a routerLink="/voyage" routerLinkActive="active" *ngIf="droit | async">Gestion Voyage</a></li>
+                  <li><a routerLink="/chauffeur" routerLinkActive="active" *ngIf="droit | async">Gestion Chauffeurs</a></li>
+                  <li><a routerLink="/client" routerLinkActive="active" *ngIf="droit | async">Gestion Clients</a></li>
+                </ul>
+              </li> 
+
+              
+              <li><a routerLink="/affecter" routerLinkActive="active">Demande</a></li>
+              <li><a routerLink="/commande" routerLinkActive="active" *ngIf="droit | async">Commande</a></li>
+              <li><a routerLink="/situation" routerLinkActive="active">Situation Livraison</a></li>
+              <li><a routerLink="/etat" routerLinkActive="active">Etat Livraison</a></li>
+              <li><a routerLink="/rapport" routerLinkActive="active">Rapport</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li (click)="onLogout()"><a  routerLink="/accueil" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Deconnexion</a></li>
+              <li><a routerLink="/profil" routerLinkActive="active"><span class="glyphicon glyphicon-log-in"></span> Profil</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+     

@@ -1,0 +1,131 @@
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Produits</div>
+                <div class="panel-body">
+                    <div *ngIf="en">
+                        <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+                                <div class="form-group">
+                                    <input type="hidden" name="id_pri" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_pri">
+                                  <label for="formGroupExampleInput">Designation Produit</label>
+                                  <input type="text" name="designation" ngModel class="form-control" id="formGroupExampleInput" placeholder="Designation Produit" [(ngModel)]="designation">
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">Reference Produit</label>
+                                  <input type="email" name="reference" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Reference Produit" [(ngModel)]="reference">
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">Prix Produit</label>
+                                  <input type="text" name="prix" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Prix Produit" [(ngModel)]="prix">
+                                </div>
+             
+
+                                      <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Commentaire</label>
+                                        <textarea class="form-control" name="commentaire" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="commentaire">{{commentaire}}</textarea>
+                                      </div>
+                                      
+                                      <button  type="submit" class="btn btn-primary">Enregistrer</button>
+
+                                      
+                                    
+                                     
+                              </form>
+                            </div>
+                              <div *ngIf="e">
+<form>
+
+    <div class="form-group">
+        <input type="hidden" name="id_pri" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_pri">
+      <label for="formGroupExampleInput">Designation</label>
+      <input type="text" name="designation" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="designation">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Reference</label>
+      <input type="text" name="reference" ngModel class="form-control" id="formGroupExampleInput2"  [(ngModel)]="reference">
+    </div>
+
+    <div class="form-group">
+            <label for="formGroupExampleInput2">Prix</label>
+            <input type="text" name="prix" ngModel class="form-control" id="formGroupExampleInput2"  [(ngModel)]="prix">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Commentaire</label>
+            <textarea class="form-control" name="commentaire" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="commentaire">{{commentaire}}</textarea>
+          </div>
+
+          <button  class="btn btn-primary"  (click)="test(id_pri,designation,reference,prix,commentaire)">Modifier</button>
+</form>
+</div>
+
+                             
+                <div>
+
+
+
+
+
+                        <div>
+
+
+                                
+</div>
+
+
+<p></p>
+<p></p>
+<br/>
+<br/>
+<br/>
+<form #ee="ngForm" (ngSubmit)="envoie(ee.value)">
+<div class="form-group">
+            
+            <input type="text" name="nomp" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Designation Produit"><br/>
+             <button  class="btn btn-primary" type="submit">Rechercher</button>
+          </div>
+          </form>
+          
+<table class="table table-striped table-hover table-bordered" [mfData]="items" #mf="mfDataTable" [mfRowsOnPage]="3" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Designation Produits</th>
+                    <th scope="col">Reference Produit</th>
+                    <th scope="col">Prix Produit</th>
+                    <th scope="col">Commentaire</th>
+                    
+                    <th scope="col" colspan="3">Options</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor=" let f of mf.data;let i = index;">
+                  <tr>
+                    <th scope="row">{{f._id}}</th>
+                    <td>{{f.designation}}</td>
+                    <td>{{f.reference}}</td>
+                    <td>{{f.prix}} {{"F"}}</td>
+                    <td>{{f.commentaire}}</td>
+                    
+
+                    <td><button class="btn btn-primary  btn-xs glyphicon glyphicon-edit" type="button" (click)="Edit(f._id)"></button></td>
+                   <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+
+                    (click)="delete(f._id)" type="button" ></button></td>
+                  </tr>
+                 
+                </tbody>
+                 <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+              </table>
+
+
+
+
+

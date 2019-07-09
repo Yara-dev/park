@@ -1,0 +1,127 @@
+
+
+<p></p>
+
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Vehicules</div>
+                <div class="panel-body">
+                    <div *ngIf="en">
+                        <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+                                <div class="form-group">
+                                    <input type="hidden" name="id_pri" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_pri">
+                                  <label for="formGroupExampleInput">Marque Vehicule</label>
+                                  <input type="text" name="marque" ngModel class="form-control" id="formGroupExampleInput" placeholder="Marque Vehicule" [(ngModel)]="marque">
+                                </div>
+                                <div class="form-group">
+                                  <label for="formGroupExampleInput2">Plaque Vehicule</label>
+                                  <input type="text" name="plaque" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Plaque Vehicule" [(ngModel)]="plaque">
+                                </div>
+
+                     
+
+                                      
+                                      
+                                      <button  type="submit" class="btn btn-primary">Enregistrer</button>
+
+                                      
+                                    
+                                     
+                              </form>
+                            </div>
+                              <div *ngIf="e">
+<form>
+
+    <div class="form-group">
+        <input type="hidden" name="id_pri" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_pri">
+      <label for="formGroupExampleInput">Marque</label>
+      <input type="text" name="nom" ngModel class="form-control" id="formGroupExampleInput" placeholder="Nom Fournisseur" [(ngModel)]="marque">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">Plaque</label>
+      <input type="email" name="email" ngModel class="form-control" id="formGroupExampleInput2" placeholder="E-mail Fournisseur" [(ngModel)]="plaque">
+    </div>
+
+
+         
+
+          <button  class="btn btn-primary"  (click)="test(id_pri,marque,plaque)">Modifier</button>
+</form>
+</div>
+
+                             
+                <div>
+
+
+
+
+
+                        <div>
+
+
+                                
+</div>
+
+
+<p></p>
+<p></p>
+
+<br/><br/><br/><br/>
+<form #ee="ngForm" (ngSubmit)="envoie(ee.value)">
+
+<div class="form-group">
+            
+            <input type="text" name="nomv" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Plaque Vehicule"><br/>
+             <button  class="btn btn-primary" type="submit">Rechercher</button>
+          </div>
+          </form>
+
+
+<table class="table table-striped table-hover table-bordered" [mfData]="items" #mf="mfDataTable" [mfRowsOnPage]="3" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Marque Vehicule</th>
+                    <th scope="col">Plaque Immatricale</th>
+                    
+                    <th scope="col" colspan="3">Options</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of mf.data;let i = index;">
+                  <tr>
+                    <th scope="row">{{f._id}}</th>
+                    <td>{{f.marque}}</td>
+                    <td>{{f.plaque}}</td>
+                   
+
+                    <td><button class="btn btn-primary  btn-xs glyphicon glyphicon-edit" type="button" (click)="Edit(f._id)"></button></td>
+                   <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+
+                    (click)="delete(f._id)" type="button" ></button></td>
+                  </tr>
+          
+                </tbody>
+                 <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+              </table>
+
+
+
+
+
+
+ 
+
+
+
+</div>
+
+</div>
+
+

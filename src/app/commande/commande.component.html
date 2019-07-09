@@ -1,0 +1,133 @@
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Commande</div>
+                <div class="panel-body">
+                    
+                        <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+                           
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <div class="card" style="width: 18rem;">
+                               
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="power">Fournisseurs</label>
+                                        <select class="form-control" id="power" required name="id_four" ngModel [ngModel]="id_four" (ngModelChange)="onChange($event)">
+                                          <option *ngFor="let po of items_four" [value]="po._id">{{po.nom}}</option>
+                                        </select>
+                                      </div>
+
+
+                                      <div class="form-group">
+                                            <label for="formGroupExampleInput2">Date Commande :</label>
+                                            <input type="Date" name="date" ngModel class="form-control" id="formGroupExampleInput2"  [(ngModel)]="date">
+                                          </div>
+
+                                </div>
+                              </div> 
+
+
+                             
+                                
+
+                                
+                                  
+                                    
+
+
+
+                                      
+
+                                      
+                                      
+
+                                      
+                                    
+                                     
+                             
+                            
+            
+
+                             
+           
+
+
+
+
+
+   
+
+
+<p></p>
+<p></p>
+<table class="table table-sm" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cochez</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Vehicule</th>
+                    
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of items_aff;let i = index;">
+                  <tr>
+                      <th scope="row">{{i+1}}</th>
+                      <td>
+                       
+                        <input type="checkbox"
+                        name="f"
+                        value="{{f.id_aff}}"
+ 
+                        (change)="onClicked(f,$event)" [disabled]="!isselect">
+                        
+                        
+                    </td>
+                    <td>{{f.designation}}</td>
+                    <td>{{f.prix}}</td>
+                    <td>{{f.quantite}}</td>
+                    <td>{{f.plaque}}</td>
+
+                   
+                  
+                  </tr>
+
+
+                  
+                </tbody>
+                <tfoot>
+
+                    
+                </tfoot>
+                <button class="btn btn-primary"
+
+                 type="submit" [disabled]="!isselect">Enregistrer</button>
+              </table>
+
+
+
+            </form>
+
+
+ 
+
+
+
+</div>
+
+
+
+</div>
+
+
+

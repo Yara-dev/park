@@ -1,0 +1,141 @@
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Demande</div>
+                <div class="panel-body">
+                    
+                        <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+                           
+                          
+                          
+                            <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="/assets/citerne.jpg" alt="Card image cap" >
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="power">Vehicules</label>
+                                        
+                                        <select class="form-control" id="power" required name="id_veh" ngModel [(ngModel)]="id_veh">
+                                          <option *ngFor="let pow of items_vehi" [value]="pow._id">{{pow.plaque}}-----{{pow.marque}}</option>
+                                        </select>
+                                      </div>
+
+                                </div>
+                              </div>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <!-- <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="power">Fournisseurs</label>
+                                        <select class="form-control" id="power" required name="id_four" ngModel>
+                                          <option *ngFor="let po of items_four" [value]="po._id">{{po.nom}}</option>
+                                        </select>
+                                      </div>
+
+                                </div>
+                              </div> -->
+
+
+                             
+                                
+
+                                
+                                  
+                                    
+
+
+
+                                      <div class="form-group">
+                                          <label for="power">Produits</label>
+                                          
+                                          <select class="form-control" id="power" required name="id_prod" ngModel [(ngModel)]="id_prod">
+                                            <option *ngFor="let pow of items_produit" [value]="pow._id">{{pow.designation}}--{{pow.reference}}</option>
+                                          </select>
+                                        </div>
+
+                                      <div class="form-group">
+                                        
+                                          <label for="formGroupExampleInput2">Quantite</label>
+                                          <input type="text" name="quantite" ngModel class="form-control" id="formGroupExampleInput2"  [(ngModel)]="quantite">
+                                        </div>
+                                      
+                                      <button  type="submit" class="btn btn-primary" *ngIf="quantite>0">Ajouter</button>
+
+                                      
+                                    
+                                     
+                              </form>
+                          
+            
+
+                             
+                <div>
+
+
+
+
+
+                        <div>
+
+
+                                
+</div>
+
+
+<p></p>
+<p></p>
+<table class="table table-sm" >
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Quantite</th>
+                    
+                    <th scope="col" colspan="3">Options</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of items_aff;let i = index;">
+                  <tr>
+                      <th scope="row">{{i+1}}</th>
+                    <td>{{f.designation}}</td>
+                    <td>{{f.quantite}}</td>
+                   
+
+                   
+                   <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+
+                    (click)="delete(f.id_aff)" type="button" ></button></td>
+                  </tr>
+
+
+                  
+                </tbody>
+                <tfoot>
+
+                    
+                </tfoot>
+                <button class="btn btn-primary"
+
+                (click)="saves()" type="button" [disabled]="!enre" >Enregistrer</button>
+              </table>
+
+
+
+
+
+
+ 
+
+
+
+</div>
+
+</div>
+
+

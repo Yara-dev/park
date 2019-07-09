@@ -1,0 +1,948 @@
+<p></p>
+<div class="container">
+
+
+
+
+    <div id="myModal1" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Confirmation Fin Voyage</h4>
+          </div>
+          <div class="modal-body">
+            <p>Êtes-vous sûr de vouloir Terminer ce Voyage ?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="confirmer()">Oui</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+          </div>
+          </div>
+        
+        </div>
+        </div>
+
+        
+
+
+
+
+
+<!--apres voyage-->
+ <!-- Modal -->
+ <div class="modal fade" id="aftertravel" tabindex="-1" role="dialog" aria-labelledby="aftertravel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Information Marchandises</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--Enregistrement -->
+        <div *ngIf="en_retour">
+          <form #m="ngForm" (ngSubmit)="infor(m.value)">
+              
+              <div class="form-group">
+                <label for="power">Unite</label>
+                <select class="form-control" id="power" required name="unite" ngModel [(ngModel)]="unite" (ngModelChange)="onChange($event)">
+                  <option  value="tonne">Tonne</option>
+                  <option  value="litre">Litres</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Designation Produit</label>
+                <input type="text" name="designation_produit" ngModel class="form-control" id="formGroupExampleInput2" placeholder="designation produit" >
+              </div>
+
+             
+
+              <div class="form-group">
+                      <label for="formGroupExampleInput2">Quantite</label>
+                      <input type="text" name="quantite" ngModel class="form-control" id="formGroupExampleInput2" placeholder="quantite" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Prix Unitaire</label>
+                      <input type="text" name="prix" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Prix Unitaire">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Commentaire</label>
+                      <textarea class="form-control" name="commentaire_voyage" ngModel id="exampleFormControlTextarea1" rows="3" >{{commentaire_voyage}}</textarea>
+                    </div>
+                    
+                    <button  type="submit" class="btn btn-primary">Enregistrer</button>
+
+                    
+                  
+                   
+            </form>
+
+          </div>
+
+           <!--Modification -->
+<div *ngIf="mo_retour">
+
+            <form #f="ngForm" (ngSubmit)="updatereturn(f.value)">
+              
+              <div class="form-group">
+                <label for="power">Unite</label>
+                <select class="form-control" id="power" required name="unite" ngModel [(ngModel)]="unite" (ngModelChange)="onChange($event)">
+                  <option  value="tonne">Tonne</option>
+                  <option  value="litre">Litres</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="formGroupExampleInput2">Designation Produit</label>
+                <input type="text" name="designation_produit" ngModel class="form-control" id="formGroupExampleInput2" placeholder="designation produit" [(ngModel)]="designation_produit">
+                <input type="text" name="id_service" ngModel class="form-control" id="formGroupExampleInput2" [(ngModel)]="id_service">
+              </div>
+
+             
+
+              <div class="form-group">
+                      <label for="formGroupExampleInput2">Quantite</label>
+                      <input type="text" name="quantite_retour" ngModel class="form-control" id="formGroupExampleInput2" placeholder="quantite" [(ngModel)]="quantite_retour">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Prix Unitaire</label>
+                      <input type="text" name="prix_retour" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Prix Unitaire" [(ngModel)]="prix_retour">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Commentaire</label>
+                      <textarea class="form-control" name="commentaire_retour" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="commentaire_retour">{{commentaire_voyage}}</textarea>
+                    </div>
+                    
+                    <button  type="submit" class="btn btn-primary">Modifier</button>
+
+                    
+                  
+                   
+            </form>
+
+          </div>
+          <br/>
+
+            <table class="table table-striped table-hover table-bordered" [mfData]="listemonvoyage" #mf2="mfDataTable" [mfRowsOnPage]="3">
+                <thead>
+                  <tr>
+                  
+                    <th scope="col">Designation</th>
+                    <th scope="col">Quantite</th>
+                    <th scope="col">Prix</th>
+                   
+                    <th scope="col">Commentaire</th>
+                    <th scope="col" colspan="2">Options</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of mf2.data;let i = index;">
+                  <tr>
+                 
+                    <td>{{f.designation}}</td>
+                    <td>{{f.quantite}}</td>
+                    <td>{{f.prix}}</td>
+                  
+                    <td>{{f.commentaire}}</td>
+                   
+                    
+                    <td><button class="btn btn-primary  btn-xs glyphicon glyphicon-edit" type="button" (click)="Editservice(f.id_service)"></button></td>
+       
+                   <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+
+                    (click)="delete(f.id_service)" type="button" ></button></td>
+                  </tr>
+                 
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+              </table>
+      </div>
+      <div class="modal-footer">
+          <a href="#myModalinfo" class="edit" data-toggle="modal" (click)="depense(entretien)"><i class="material-icons" data-toggle="tooltip" title="payment" >print</i></a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalFIN">Terminer Voyage</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="myModalFIN" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmation Finalisation Voyage</h4>
+      </div>
+      <div class="modal-body">
+        <p>Êtes-vous sûr de vouloir Finaliser ce Voyage ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="fin()">Oui</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+      </div>
+      </div>
+    
+    </div>
+    </div>
+
+
+
+<div id="myModalinfo" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg"  style="width:100%;">
+	  
+		  <!-- Modal content-->
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <button type="button" class="close" data-dismiss="modal">&times;</button>
+			  
+			  <h4 class="modal-title" *ngIf="statusactuel==1 && choix2">Confirmation de Entretien</h4>
+			  <h4 class="modal-title" *ngIf="statusactuel==2 && choix2">Confirmation facture D'Entretien</h4>
+			  <h4 class="modal-title" *ngIf="statusactuel==2 && choix">BON DE REPARATION</h4>
+			  <h4 class="modal-title" *ngIf="statusactuel==3 && choix2">DETAIL FACTURE</h4>
+			  <h4 class="modal-title" *ngIf="statusactuel==3 && choix">DETAIL BON DE RAPARATION</h4>
+			</div>
+			<div class="modal-body">
+
+					
+
+				
+					<!-- <table class="table table-hover">
+							<thead>
+							  <tr>
+									<th>Numero</th>
+									<th>Date</th>
+									<th>Type</th>
+									<th>Quantite</th>
+									<th>Cout</th>
+								
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr *ngFor="let ent of listedepenseid">
+								<td>{{ent.id_depense}}</td>
+								<td>{{ent.date_depense}}</td>
+								<td>{{ent.type_depense_id}}</td>
+								<td>{{ent.quantite_depense}}
+								</td>
+								<td>{{ent.cout_depense}}</td>
+								
+							  </tr>
+							 
+							</tbody>
+						  </table> -->
+
+
+
+
+
+
+
+						   <!-- <div id="invoice-box">
+							<table cellpadding="0" cellspacing="0"  >
+								<tr class="top">
+									<td colspan="2">
+										<table>
+											<tr>
+												<td>
+										Ministere de L'Economie et des Finances
+												</td>
+												
+												<td>
+											REPUBLIQUE DU MALI<br>
+													Un Peuple - Un But - Une Foi
+													
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								
+								<tr class="information">
+									<td colspan="2">
+										<table>
+											<tr>
+												<td>
+													Fournisseur :  {{infournisseur}}<br>
+													Adresse Complete :
+												</td>
+												
+												<td>
+													Plaque Vehicule :  {{infosveh}}<br>
+													Marque : <br>
+													Departement : 
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								
+								<tr class="heading">
+									<td>
+										BON DE REPARATION 
+									</td>
+									
+									<td>
+										N<sup>o</sup> #: {{entretien_id}} 
+									</td>
+								</tr>
+								
+								 <tr class="details">
+									<td>
+										
+									</td>
+									
+									<td>
+										
+									</td>
+								</tr> 
+								
+								<tr class="heading">
+									<td>
+										Description Pieces
+									</td>
+									
+									<td>
+										Quantite
+									</td>
+								</tr>
+								
+								<tr class="item" *ngFor="let ent of listedepenseid">
+									<td>
+										{{ent.piece}}
+									</td>
+									
+									<td>
+										{{ent.quantite_depense}}
+									</td>
+								</tr>
+								
+								
+								
+								
+								
+								<tr class="total">
+									<td></td>
+									
+									<td>
+									   Total: $385.00
+									</td>
+								</tr> 
+
+
+
+
+
+								<tr>
+									<td>
+							
+									</td>
+									
+									<td>
+								
+										
+									</td>
+								</tr>
+
+
+
+
+
+								<tr class="heading">
+									<td>
+										Comptable Matiere
+									</td>
+									
+									<td>
+										Chef de Park
+									</td>
+								</tr>
+							</table>
+						</div>  -->
+
+						 <div id="container">
+								<div id="header">
+									<div id="logo">
+											<h3>Ministere de L'Economie et des Finances</h3>
+											<h4>D.F.M</h4>
+										<p>BAMAKO</p>
+									</div>
+									<div id="reference">
+										<h3><strong>REPUBLIQUE DU MALI</strong></h3>
+									
+										<p>Un Peuple - Un But - Une Foi</p>
+									</div>
+								</div>
+							
+								<div id="fromto">
+									<div id="from">
+										<p>
+											<strong>Chauffeur :{{nomchauffeur}}</strong><br>
+											Adresse : {{adressefournisseur}} <br>
+											
+											Tél.: {{telfournisseur}} <br>
+											Email: {{emailfournisseur}} 
+										</p>
+									</div>
+									<div id="to">
+										<p>
+											<strong>Plaque Vehicule :  {{infosveh}}</strong><br>
+											Marque Vehicule : {{vehmarque}}<br>
+											Departement : {{departes}}
+										</p>
+									</div>
+								</div>
+
+
+								<div id="fromto">
+										
+										<div id="to">
+											<p>
+												<strong>BON DE REPARATION N<sup>o</sup> #: {{entretien_id}} </strong><br>
+												Date : {{date_entres}}<br>
+												
+											</p>
+										</div>
+									</div>
+							
+								<div id="items">
+									
+									<table>
+										<tr>
+											<th>Numero Frais</th>
+											<th>Désignation</th>
+											<th>Prix Unitaire</th>
+											<th>Quantite</th>
+											<th>Montant</th>
+										</tr>
+
+
+
+										<tr *ngFor="let ent of listedepenseid">
+											<td>{{ent.type_depens}}</td>
+											<td>{{ent.piece}}</td>
+											<td >{{ent.cout_depense}} F</td>
+											<td>{{ent.quantite_depense}}</td>
+											<td>{{ent.cout_depense * ent.quantite_depense}} F</td>
+										</tr>
+										
+									</table>
+								</div>
+							
+								<div id="summary">
+									<div id="note">
+										<h4>Note :</h4>
+										<p>Information complémentaire à ajouter.</p>
+									</div>
+									<div id="total">
+										<table border="1">
+										
+											<tr>
+												<td>Total TTC</td>
+												<td>{{totauxgeneral}} F</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							
+
+
+
+								
+
+
+							
+								<div id="summary">
+										<div id="note">
+											LE COMPTABLE MATIERES
+											
+										</div>
+										<div id="total">
+											<table>
+												<tr>
+													<td>LE CHEF MATRIEL</td>
+													
+												</tr>
+												
+												
+											</table>
+										</div>
+									</div>
+
+
+									
+
+
+									
+								<!-- <div id="footer">
+									<p>Société à responsabilité limité (SARL) - Capital de 1 000 000 € - SIRET: 87564738493127 <br>
+										NAF-APE: 6202A - Num. TVA: FR28987856541</p>
+								</div> -->
+							</div> 
+						
+								
+		
+										
+										
+							
+							
+								
+									
+										
+											
+										
+											
+											
+									
+									
+										
+											
+									
+							
+								
+									
+									
+										
+										
+											
+											
+											
+											
+											
+										
+										
+									
+								
+							
+								
+									
+										
+										
+									
+												
+										
+											
+												
+												
+											
+											
+												
+												
+											
+											
+												
+												
+											
+										
+									
+								
+							
+								
+									
+										
+								
+							
+							
+
+						
+							
+						
+						
+
+
+			</div>
+			<div class="modal-footer">
+					<button (click)="printCrossword('container')">Imprimer</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+			 
+			</div>
+
+			<div class="modal-footer" *ngIf="choix2 && statusactuel==1">
+					<button type="button" class="btn btn-default" data-dismiss="modal" (click)="confirmerbon()">Oui</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+			 
+			</div>
+		  </div>
+	  
+		</div>
+	  </div>
+
+
+
+<!--apres voyage-->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"  style="width:80%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Frais de Voyage</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div *ngIf="!frais">
+            <form #f="ngForm" (ngSubmit)="onsavefrais(f.value)">
+               
+                
+                <div class="form-group">
+                  <label for="power">Frais</label>
+                  <select class="form-control" id="power" required name="id_depense" ngModel [ngModel]="designation_frais"  (ngModelChange)="onChange($event)">
+                    <option *ngFor="let veh of listedepense" [value]="veh.id_depense">{{veh.designation}}</option>
+                  </select>
+                </div>
+
+               
+
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Quantite</label>
+                   
+                    <input type="text" name="quantite_frais" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Quantite" [(ngModel)]="quantite_frais">
+                  </div>
+                  <div class="form-group">
+                      <label for="formGroupExampleInput2">Prix Unitaire</label>
+                      <input type="text" name="prix_frais" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Prix Unitaire" [(ngModel)]="prix_frais">
+                    </div>
+
+                <div class="form-group">
+                        <label for="formGroupExampleInput2">Montant</label>
+                        <input type="text" name="montant" ngModel class="form-control" id="formGroupExampleInput2" placeholder="montant" [(ngModel)]="montant">
+                      </div>
+
+
+
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Commentaire</label>
+                        <textarea class="form-control" name="commentaire" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="frais_commentaire">{{commentaire}}</textarea>
+                      </div>
+                      
+                      <button  type="submit" class="btn btn-primary">Enregistrer</button>
+ 
+                      
+                    
+                     
+              </form>
+              </div>
+
+<div *ngIf="frais">
+              <form #f="ngForm" (ngSubmit)="editsfrais(f.value)">
+               
+                
+                  <div class="form-group">
+                    <label for="power">Frais</label>
+                    <select class="form-control" id="power" required name="id_depense" ngModel [ngModel]="designation_frais" name="designation_frais" (ngModelChange)="onChange($event)">
+                      <option *ngFor="let veh of listedepense" [value]="veh.id_depense">{{veh.designation}}</option>
+                    </select>
+                  </div>
+  
+                 
+  
+                  <div class="form-group">
+                      <label for="formGroupExampleInput2">Quantite</label>
+                      <input type="text" name="id_fr" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Quantite" [(ngModel)]="id_fr">
+                      <input type="text" name="quantite_frais" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Quantite" [(ngModel)]="quantite_frais">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Prix Unitaire</label>
+                        <input type="text" name="prix_frais" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Prix Unitaire" [(ngModel)]="prix_frais">
+                      </div>
+  
+                  <div class="form-group">
+                          <label for="formGroupExampleInput2">Montant</label>
+                          <input type="text" name="montant" ngModel class="form-control" id="formGroupExampleInput2" placeholder="montant" [(ngModel)]="montant">
+                        </div>
+  
+  
+  
+                        <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Commentaire</label>
+                          <textarea class="form-control" name="frais_commentaire" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="frais_commentaire">{{commentaire}}</textarea>
+                        </div>
+                        
+  
+                        <button type="submit"  class="btn btn-primary">Modifier</button>
+                        
+                      
+                       
+                </form>
+
+              </div>
+
+
+
+
+              <br/><br/><br/>
+              <table class="table table-striped table-hover table-bordered" [mfData]="listefrais" #mf1="mfDataTable" [mfRowsOnPage]="3">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Frais</th>
+                      <th scope="col">Quantite</th>
+                      <th scope="col">Prix Unitaire</th>
+                      <th scope="col">Montant</th>
+                      <th scope="col">Commentaire</th>
+                    
+                      <th scope="col" colspan="3">Options</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let f of mf1.data;let i = index;">
+                    <tr>
+                      <th scope="row">{{i+1}}</th>
+                      <td>{{f.designation}}</td>
+                      <td>{{f.quantite}}</td>
+                      <td>{{f.prix}}</td>
+                      <td>{{f.quantite*f.prix}}</td>
+                      <td>{{f.commentaire}}</td>
+                     
+                     
+                      
+                      <td><button class="btn btn-primary  btn-xs glyphicon glyphicon-edit" type="button" (click)="Editfrais(f.id_frais)"></button></td>
+         
+                     <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+  
+                      (click)="delete(f.id_frais)" type="button" ></button></td>
+                    </tr>
+                   
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <td colspan="4">
+                              <mfBootstrapPaginator ></mfBootstrapPaginator>
+                          </td>
+                      </tr>
+                      </tfoot>
+                </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="panel panel-primary">
+                <div class="panel-heading">VOYAGE</div>
+                <div class="panel-body">
+                    <button  class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModal2" (click)="news()" >Nouveau Voyage</button>   
+                    <br/>
+                    <br/>
+                    <br/>
+
+                             
+               
+
+
+
+
+
+  <!--form-->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg"  style="width:80%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div *ngIf="en"> 
+              <form #f="ngForm" (ngSubmit)="onSave(f.value)">
+                      <div class="form-group">
+                          <input type="hidden" name="id_pri" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_pri">
+                        <label for="formGroupExampleInput">Date Depart</label>
+                        <input type="date" name="date_depart" ngModel class="form-control" id="formGroupExampleInput" placeholder="Date Depart" >
+                      </div>
+                      <div class="form-group">
+                        <label for="power">Vehicule</label>
+                        <select class="form-control" id="power" required name="id_veh" ngModel  (ngModelChange)="onChange($event)">
+                          <option *ngFor="let veh of listeveh" [value]="veh._id">{{veh.plaque}}-{{veh.marque}}</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                          {{id_client}}
+                        <label for="power">Client</label>
+                        <select class="form-control" id="power" required name="id_client" ngModel  (ngModelChange)="onChange($event)">
+                          <option *ngFor="let client of listeclient" [value]="client.id_client">{{client.nom}}</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="power">Chauffeur</label>
+                        <select class="form-control" id="power" required name="id_chauffeur" ngModel  (ngModelChange)="onChange($event)">
+                          <option *ngFor="let chauffeur of listechauffeur" [value]="chauffeur.id_chauffeur">{{chauffeur.nom}}({{chauffeur.permit}})</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                              <label for="formGroupExampleInput2">Destination</label>
+                              <input type="text" name="destination" ngModel class="form-control" id="formGroupExampleInput2" placeholder="destination" >
+                            </div>
+
+                            <div class="form-group">
+                              <label for="exampleFormControlTextarea1">Marchandises</label>
+                              <textarea class="form-control" name="marchandises" ngModel id="exampleFormControlTextarea1" rows="3" >{{marchandises}}</textarea>
+                            </div>
+                            
+                            <button  type="submit" class="btn btn-primary" *ngIf="!four">Enregistrer</button>
+
+                            
+                          
+                           
+                    </form>
+                  </div>
+                    <div *ngIf="e">
+                        <form>
+
+                           
+                               
+                                <div class="form-group">
+                                  <input type="text" name="id_voyage" ngModel class="form-control" id="formGroupExampleInput"  [(ngModel)]="id_voyage">
+                                <label for="formGroupExampleInput">Date Depart</label>
+                                <input type="date" name="date_depart" ngModel class="form-control" id="formGroupExampleInput" placeholder="Date Depart" [(ngModel)]="date_depart">
+                              </div>
+                              <div class="form-group">
+                                <label for="power">Vehicule</label>
+                                {{id_veh}}
+                                <select class="form-control" id="power" required name="id_veh" ngModel [(ngModel)]="id_veh" (ngModelChange)="onChange($event)">
+                                  <option *ngFor="let veh of listeveh" [value]="veh._id">{{veh.plaque}}-{{veh.marque}}</option>
+                                </select>
+                              </div>
+                        
+                              <div class="form-group">
+                                <label for="power">Client</label>
+                                <select class="form-control" id="power" required name="id_client" ngModel [(ngModel)]="id_client" (ngModelChange)="onChange($event)">
+                                  <option *ngFor="let client of listeclient" [value]="client.id_client">{{client.nom}}</option>
+                                </select>
+                              </div>
+                        
+                              <div class="form-group">
+                                {{id_chauffeur}}
+                                <label for="power">Chauffeur</label>
+                                <select class="form-control" id="power" required name="id_chauffeur" ngModel [(ngModel)]="id_chauffeur" (ngModelChange)="onChange($event)">
+                                  <option *ngFor="let chauffeur of listechauffeur" [value]="chauffeur.id_chauffeur">{{chauffeur.nom}}({{chauffeur.permit}})</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                 </div>
+                        
+                              <div class="form-group">
+                                {{destination}}
+                                      <label for="formGroupExampleInput2">Destination</label>
+                                      <input type="text" name="destination" ngModel class="form-control" id="formGroupExampleInput2" placeholder="destination" [(ngModel)]="destination">
+                                    </div>
+                        
+                                    <div class="form-group">
+                                      <label for="exampleFormControlTextarea1">Marchandises</label>
+                                      <textarea class="form-control" name="marchandises" ngModel id="exampleFormControlTextarea1" rows="3" [(ngModel)]="marchandises">{{marchandises}}</textarea>
+                                    </div>
+                        
+                                  <button  class="btn btn-primary" (click)="test(id_voyage,date_depart,id_veh,id_client,id_chauffeur,destination,marchandises)" data-dismiss="modal">Modifier</button>
+                        </form>
+
+</div>
+
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--fIN Form-->     
+
+
+
+
+
+
+
+
+
+
+
+
+<form #ee="ngForm" (ngSubmit)="envoie(ee.value)">
+<div class="form-group">
+            
+            <input type="text" name="nomf" ngModel class="form-control" id="formGroupExampleInput2" placeholder="Nom Fournisseur"><br/>
+             <button  class="btn btn-primary" type="submit">Rechercher</button>
+          </div>
+          </form>
+
+        
+<table class="table table-striped table-hover table-bordered" [mfData]="listevoyage" #mf="mfDataTable" [mfRowsOnPage]="3">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date Depart</th>
+                    <th scope="col">Vehicule</th>
+                    <th scope="col">Chauffeur</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Client</th>
+                   
+                    <th scope="col">Marchandises</th>
+                    <th scope="col" >Status</th>
+                    <th scope="col" colspan="4" >Action</th>
+  
+                  </tr>
+                </thead>
+                <tbody *ngFor="let f of mf.data;let i = index;">
+                  <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{f.date_depart}}</td>
+                    <td>{{f.vehicule}}</td>
+                    <td>{{f.chauffeur}}</td>
+                    <td>{{f.destination}}</td>
+                    <td>{{f.client}}</td>
+                   
+                    <td>{{f.marchandises}}</td>
+                    <td *ngIf="f.status==0">MOUVEMENT...</td>
+                    <td *ngIf="f.status==1">ATTENTE DECHARGEMENT</td>
+                    <td><button class="btn btn-primary  " type="button" (click)="depenses(f.id_voyage)" data-toggle="modal" data-target="#exampleModal">Ajouter Frais</button></td>
+                    <td *ngIf="f.status==0"><button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#myModal1" (click)="confir(f.id_voyage)" title="Terminer Voyage">TERMINER VOYAGE</button></td>
+                    <td *ngIf="f.status==1"><button class="btn btn-primary  " type="button"  data-toggle="modal" data-target="#aftertravel" (click)="confir(f.id_voyage)" title="Montant du Voyage">DECHARGEMENT</button></td>
+                    <td><button class="btn btn-primary  btn-xs glyphicon glyphicon-edit" type="button" (click)="Edit(f.id_voyage)" data-toggle="modal" data-target="#exampleModal2"></button></td>
+                   
+                   <td> <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"
+
+                    (click)="delete(f._id)" type="button" ></button></td>
+                  </tr>
+                 
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <mfBootstrapPaginator ></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                    </tfoot>
+              </table>
+
+
+
+
+

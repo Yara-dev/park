@@ -1,10 +1,23 @@
 import { Component } from '@angular/core';
-
+import { AuthService } from './auth/auth.service';
+let apiUrl = 'http://staroilmali.africa-soft.ml/fournisseur/';
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  template: `
+    <app-menu></app-menu>
+    <router-outlet></router-outlet>
+  `,
+  styles: []
 })
 export class AppComponent {
-  title = 'app';
+
+ 
+constructor(private authService: AuthService)
+{
+
+  
+}
+
+
+
 }

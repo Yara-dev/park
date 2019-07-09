@@ -1,0 +1,121 @@
+
+<p></p>
+<div class="container">
+
+        <div class="panel panel-primary">
+                <div class="panel-heading">Rapport</div>
+                <div class="panel-body">
+                    
+                        <form #f="ngForm" (ngSubmit)="chercher(f.value)">
+                           
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <div class="card" style="width: 18rem;">
+                                <img class="card-img-top" src="" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="power">Fournisseurs</label>
+                                        <select class="form-control" id="power" required name="id_four" ngModel>
+                                          <option *ngFor="let po of items_four" [value]="po._id">{{po.nom}}</option>
+                                        </select>
+                                      </div>
+
+                                </div>
+                              </div>
+
+
+                             
+                                
+
+                                
+                                  
+                                    
+
+
+
+                                     
+
+                                      <div class="form-group">
+                                          <label for="formGroupExampleInput2">Du :</label>
+                                          <input type="date" name="date_debut" ngModel class="form-control" id="formGroupExampleInput2" placeholder="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="formGroupExampleInput2">Au :</label>
+                                            <input type="Date" name="date_fin" ngModel class="form-control" id="formGroupExampleInput2" placeholder="1">
+                                          </div>
+                                      
+                                      <button  type="submit" class="btn btn-primary">Rechercher</button>
+
+                                      
+                                    
+                                     
+                              </form>
+                            
+            
+
+                             
+                
+
+
+                                
+</div>
+
+
+
+
+
+
+
+ 
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="container">
+<p></p>
+
+<div id="event">
+<table class="table table-striped" width="100%" border="1">
+                <thead >
+                  <tr>
+                    <th scope="col">Vehicules</th>
+                    <th scope="col" class="text-center">Produits</th>
+                    <th scope="col" class="text-center">Quantite</th>
+                    
+                  
+                  </tr>
+                </thead>
+
+                <tbody *ngFor="let f of four">
+                  <tr>
+                    <th>{{f.vehicule}}</th>
+                    <td class="text-center">{{f.produit}}</td>
+                    <td class="text-center">{{f.quantite}}</td>
+                   
+
+                   
+                 
+                  </tr>
+                 
+                </tbody>
+                
+              </table>
+
+            </div>
+          </div>
+          <p><button (click)="imprime_zon('STAROIL','event');">Imprimer</button></p>
+          <p></p>
+          
+
+
